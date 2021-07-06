@@ -6,6 +6,11 @@ with `fastify` and `react-query`, using `json-schema-to-ts`, `fastify-swagger`, 
 You write code [like this](https://github.com/rattrayalex/fastify-openapi-typescript-demo/blob/main/create-todo.ts#L4-L42) on your backend:
 
 ```ts
+import fastify from 'fastify'
+import { FromSchema } from 'json-schema-to-ts'
+
+const app = fastify()
+
 const todo = {
   title: 'Create Todo',
   type: 'object',
@@ -17,6 +22,7 @@ const todo = {
   required: ['name'],
   additionalProperties: false,
 } as const
+
 type Todo = FromSchema<typeof todo>
 
 const schema = {
